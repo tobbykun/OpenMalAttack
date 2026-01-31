@@ -13,9 +13,9 @@ import copy
 import pandas as pd
 import subprocess
 
-IDA_PATH = "/root/IDA_Pro_v6.4/idaq64"
-SCRIPT_PATH = "/OpenMalAttack/scripts/graph_handle_acfg.py"
-tmp_sample_root = "/OpenMalAttack/dataset/tmp"
+IDA_PATH = "XXX/idaq64"
+SCRIPT_PATH = "../scripts/graph_handle_acfg.py"
+tmp_sample_root = "../dataset/tmp"
 
 class observation(object):
     def __init__(self, num_node, num_edge, node_feats, feat_num, degs, node_adj):
@@ -35,7 +35,7 @@ class observation(object):
 class FeatsExtractor(object):
     def __init__(self):
         self.sha256 = None
-        with open("/OpenMalAttack/configs/OpCodeEncode.json") as f:
+        with open("../configs/OpCodeEncode.json") as f:
             self.OpCodeEncode = json.load(f)
         self.ReverseEncode = {v:k for k,v in self.OpCodeEncode.items()}
         self.feat_num = len(self.OpCodeEncode)

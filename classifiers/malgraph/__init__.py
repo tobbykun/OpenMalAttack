@@ -11,13 +11,13 @@ from torch_geometric.data.batch import Batch
 class configuration:
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     threshold_type = '100fpr'
-    IDA_PATH = "/root/IDA_Pro_v6.4/idaq64"
-    SCRIPT_PATH = "/OpenMalAttack/scripts/graph_handle_acfg.py"
-    tmp_sample_root = "/OpenMalAttack/dataset/tmp"
+    IDA_PATH = "The path to the directory containing idaq64."
+    SCRIPT_PATH = "../../scripts/graph_handle_acfg.py"
+    tmp_sample_root = "../..//dataset/tmp"
     IDA_TIMEOUT = 600  # seconds; IDA ACFG extraction timeout per file (avoid blocking forever)
-    vocab_path = "/OpenMalAttack/configs/train_external_function_name_vocab.jsonl"
+    vocab_path = "../..//configs/train_external_function_name_vocab.jsonl"
     max_vocab_size = 10000
-    model_path = "/OpenMalAttack/models/malgraph/best_malgraph_model.pt"
+    model_path = "../..//models/malgraph/best_malgraph_model.pt"
 
     gnn_type="GraphSAGE"
     pool_type="global_max_pool"

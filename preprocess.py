@@ -26,9 +26,9 @@ import multiprocessing
 from multiprocessing import Pool, Lock
 from dataset import malware_train, malware_test
 
-IDA_PATH = "/root/IDA_Pro_v6.4/idaq64"
-SCRIPT_PATH = "/OpenMalAttack/scripts/graph_handle_acfg.py"
-tmp_sample_root = "/OpenMalAttack/dataset/tmp"
+IDA_PATH = "XXX/idaq64"
+SCRIPT_PATH = "scripts/graph_handle_acfg.py"
+tmp_sample_root = "dataset/tmp"
 TIMEOUT = 90
 
 # ls_than_3000Blocks = []

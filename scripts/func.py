@@ -1,11 +1,3 @@
-# coding:utf-8
-#
-# Reference Lister
-#
-# List all functions and all references to them in the current section.
-#
-# Implemented with the idautils module
-#
 from idaapi import *
 from idautils import *
 from idc import *
@@ -101,12 +93,6 @@ def get_unified_funcname(ea):
 	"""
 	funcname = GetFunctionName(ea)
 	return funcname
-	# print("origin function name: ", funcname)
-	# if len(funcname) > 0:
-	# 	if '.' == funcname[0]:
-	# 		funcname = funcname[1:]
-	# # print("final function name: ", funcname)
-	# return funcname
 
 
 def processpltSegs():

@@ -1,11 +1,3 @@
-# coding:utf-8
-#
-# Reference Lister
-#
-# List all functions and all references to them in the current section.
-#
-# Implemented with the idautils module
-#
 from idaapi import *
 from idautils import *
 import idc
@@ -19,7 +11,7 @@ from discovRe import *
 import time
 import logging
 import jsonlines
-logging.basicConfig(filename='/OpenMalAttack/logs/debug.log', level=logging.INFO, filemode='a')
+logging.basicConfig(filename='../logs/debug.log', level=logging.INFO, filemode='a')
 
 def write_data_to_filename(filename, data):
     """
@@ -64,7 +56,7 @@ def get_func_cfgs_c(start_time):
         for funcea in Functions(segm.startEA, segm.endEA):
             funcname = get_unified_funcname(funcea)
             func = get_func(funcea)  # 得到func这个类对象
-            write_data_to_filename('/OpenMalAttack/logs/debug.log', func)
+            write_data_to_filename('../logs/debug.log', func)
             # icfg是函数的cfg
             icfg = cfg.getCfg(func, externs_eas, ea_externs)
 			

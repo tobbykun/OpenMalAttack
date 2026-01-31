@@ -22,10 +22,10 @@ class configuration:
     dropout_rate = 0.5
     use_activation = True
     last_activation = "sigmoid"
-    model_path = "/OpenMalAttack/models/magic/best_magic_model.pt"
-    IDA_PATH = "/root/IDA_Pro_v6.4/idaq64"
-    SCRIPT_PATH = "/OpenMalAttack/scripts/graph_handle_acfg.py"
-    tmp_sample_root = "/OpenMalAttack/dataset/tmp"
+    model_path = "../../models//magic/best_magic_model.pt"
+    IDA_PATH = "The path to the directory containing idaq64."
+    SCRIPT_PATH = "../../scripts/graph_handle_acfg.py"
+    tmp_sample_root = "../../dataset/tmp"
     threshold_type = '100fpr'
 
 def transform_acfg_list_to_graph(acfg_list):

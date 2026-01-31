@@ -1,0 +1,35 @@
+OpenMalAttack - Open Malware Attack-Defense Evaluation Platform
+Copyright (c) tobbykun
+
+Licensed under the MIT License. See the LICENSE file in the repository root.
+
+---
+
+This project includes or adapts code from the following third-party projects.
+Their respective copyright notices and licenses must be retained when
+redistributing or modifying the corresponding code.
+
+1. Malware Makeover (enhanced-binary-diversification)
+   - Source: https://github.com/pwwl/enhanced-binary-diversification
+   - Location in this repo: ThirdParty/MakeOver/
+   - Copyright (c) 2021, Mahmood Sharif, Keane Lucas, Michael K. Reiter,
+     Lujo Bauer, and Saurabh Shintre
+   - License: MIT (see ThirdParty/MakeOver/LICENSE)
+
+2. MAB-malware
+   - Source: https://github.com/weisong-ucr/MAB-malware
+   - Location in this repo: ThirdParty/MAB/
+   - Copyright (c) 2021, Wei Song et al.
+   - License: MIT (see ThirdParty/MAB/LICENSE)
+
+3. nn_robust_attacks (Carlini-Wagner style attacks)
+   - Source: https://github.com/carlini/nn_robust_attacks
+   - Location in this repo: ThirdParty/CW/
+   - Copyright (c) 2016, Nicholas Carlini
+   - License: BSD-2-Clause (see ThirdParty/CW/LICENSE)
+
+4. MalGraph (reference implementation)
+   - Source: https://github.com/ryderling/MalGraph
+   - Copyright (c) 2022 ryder
+   - License: MIT
+   - Note: The MalGraph detector in this project may use or adapt ideas/code from the above repo. If you distribute code derived from that repository, include its license notice.

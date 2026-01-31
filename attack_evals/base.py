@@ -38,26 +38,14 @@ class Evaler:
         print(f"[Evalation] {self.attacker.__name__}->{self.clsf.__name__}")
         # with tqdm(total=len(dataset), desc="Evaluation") as pbar:
         for i, data in enumerate(dataset):
-
-            # if not change_input:
             if self.attacker.__name__ != "MalFox":
                 if isinstance(data, str):  # if data is path
                     data = open(data, 'rb').read()
                 if not self.clsf(data).item():
                     continue
 
-            # try:
-                # $ Note that the attacker does not save adversarial samples.
-                # $ sha256 is None if attack succeed, sha256 equals the hash value of adversarial sample otherwise.
             sha256, label = self.attacker(self.clsf, data)
             print(i, sha256, label)
-            # logging.info(i, sha256, " attack " + "succeeded" if label else "failed")
-            # except Exception as e:
-            #     print(e)
-            #     logging.exception(e)
-
-                # pbar.set_postfix(label=label)
-                # pbar.update()
 
         print("ASR: {}".format(self.attacker._ASR()))
         print("Time Consuming: {}".format(self.attacker._Mean_Time()))

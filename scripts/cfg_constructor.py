@@ -124,17 +124,6 @@ def attributingRe(cfg, externs_eas, ea_externs):
     return cfg
 
 
-# def obtain_block_sequence(func):
-#     control_blocks = {}
-#     blocks = [(v.startEA, v.endEA) for v in idaapi.FlowChart(func)]  # 返回该函数所有的basicblock
-    
-#     for bl in blocks:  # delete wrong blocks
-#         base = bl[0]
-#         if bl[0] < bl[1]:
-#             control_ea = checkCB(bl)
-#             control_blocks[control_ea] = bl
-#     return control_blocks
-
 def obtain_block_sequence(func):
     control_blocks = {}
     blocks = [(v.startEA, v.endEA) for v in idaapi.FlowChart(func)]  # 返回该函数所有的basicblock

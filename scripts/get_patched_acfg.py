@@ -9,14 +9,14 @@ import hydra
 import omegaconf
 from omegaconf import DictConfig
 
-cfg_path = "/OpenMalAttack/configs/attack_mal.yaml"
+cfg_path = "../configs/attack_mal.yaml"
 config = omegaconf.OmegaConf.load(cfg_path)
 
 def obtain_acfg(cmd):
     p = subprocess.Popen(cmd, shell=True)
     p.wait()
 
-@hydra.main(config_path="/OpenMalAttack/configs", config_name="attack_mal.yaml")
+@hydra.main(config_path="../configs", config_name="attack_mal.yaml")
 def main(config: DictConfig):
     IDA_PATH = config.Acfg.IDA_PATH
     SCRIPT_PATH = config.Acfg.patch_script_path
@@ -28,9 +28,6 @@ def main(config: DictConfig):
         cmd = IDA_PATH + ' -c -A -S' + SCRIPT_PATH + ' ' + f
         cmd_list.append(cmd)
 
-    # filename = '/home/000GitHub/MalGuise/pe_changes_and_acfgs/patched_pe_files/878ecb072c4a518321f7e282a9994ef7dd3c1ec86743e7419fa8e54a6a600823_patched'
-    # cmd = IDA_PATH + ' -c -A -S' + SCRIPT_PATH + ' ' + filename
-    # cmd_list.append(cmd)
     with Pool(processes = config.Feature_Attack.num_workers) as p:
         p.map(obtain_acfg,cmd_list)
 

@@ -20,6 +20,6 @@ class PEDataset():
     def __len__(self):
         return len(self.paths)
 
-path = "/OpenMalAttack/dataset/tmp"
+path = "./tmp"
 for item in PEDataset(str(Path(path).expanduser()))[:]:
     os.system(f"rm {os.path.join(path, item)}")

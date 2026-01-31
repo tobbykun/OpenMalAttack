@@ -10,8 +10,8 @@ def write_data_to_filename(filename, data):
         writer.write(data)
 
 
-base_dir = '/home/wzy/get_test_dataset_acfg/temp_acfg_files_before_call/'
-target_name = '/home/wzy/get_test_dataset_acfg/test_malicious_before_call.json'
+base_dir = 'XXX/get_test_dataset_acfg/temp_acfg_files_before_call/'
+target_name = 'XXX/get_test_dataset_acfg/test_malicious_before_call.json'
 filepath_list = glob.glob(base_dir + '*.json')
 for filepath in filepath_list:
     with open(filepath, "r+") as f:

@@ -17,14 +17,14 @@ def obtain_acfg(cmd):
     p.wait()
 
 def main():
-    hash_to_path = get_data('/home/wzy/get_test_dataset_acfg/hash_list/mal_hash_to_path.txt')
+    hash_to_path = get_data('XXX/get_test_dataset_acfg/hash_list/mal_hash_to_path.txt')
     cmd_list = []
-    f = open('/home/wzy/get_test_dataset_acfg/hash_list/test_mal_hash.txt', 'r')
+    f = open('XXX/get_test_dataset_acfg/hash_list/test_mal_hash.txt', 'r')
     line = f.readline()
     while line:
         data_hash = json.loads(line.strip())
         hash_path = hash_to_path[data_hash]
-        cmd = 'cp ' + hash_path + ' /home/wzy/mal_benign_data/test/test_mal_data'
+        cmd = 'cp ' + hash_path + ' XXX/mal_benign_data/test/test_mal_data'
         cmd_list.append(cmd)
         line = f.readline()
     f.close()

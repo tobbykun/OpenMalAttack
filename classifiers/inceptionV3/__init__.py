@@ -1,42 +1,3 @@
-# import torch
-# from ThirdParty.inceptionV3 import inception_v3
-# from classifiers.base import Classifier
-
-
-# class InceptionV3(Classifier):
-#     def __init__(self, model_file='/OpenMalAttack/models/inceptionV3_FGSM.pth', **kwargs):
-#         super(InceptionV3, self).__init__(**kwargs)
-
-#         device = self.select_device()
-        
-#         self.malicious_threshold = 0.5
-#         self.model = inception_v3(pretrained=False)
-#         self.model.load_state_dict(torch.load(model_file, map_location='cpu'))
-#         self.model.eval()
-
-#     def __call__(self, image) -> bool:
-#         score = self.predict_proba(image)
-#         return score.argmax(dim=1)
-    
-#     def predict_proba(self, image) -> float:
-#         score = self.model(image)
-#         return score
-
-#     def select_device(self):
-#         if torch.has_mps:
-#             device = torch.device('mps')
-#             # print('-------using mps as device-------')
-#         elif torch.cuda.is_available():
-#             device = torch.device('cuda')
-#             # print('-------using cuda as device-------')
-#         else:
-#             device = torch.device('cpu')
-#             # print('-------using cpu as device-------')
-#         return device
-
-
-
-
 import torch
 from ThirdParty.inceptionV3 import inception_v3
 from classifiers.base import Classifier
@@ -46,7 +7,7 @@ from dataclasses import dataclass
 @dataclass
 class configuration:
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    model_file = "/OpenMalAttack/models/inceptionV3_FGSM.pth"
+    model_file = "../../models/inceptionV3_FGSM.pth"
     threshold_type = '100fpr'
 
 
@@ -58,7 +19,7 @@ class InceptionV3(Classifier):
     - __call__: 返回是否为“恶意”（True/False）的布尔张量，供 Evaler 使用
     """
 
-    def __init__(self, model_file='/OpenMalAttack/models/inceptionV3_FGSM.pth', threshold_type='100fpr', **kwargs):
+    def __init__(self, model_file='../../models/inceptionV3_FGSM.pth', threshold_type='100fpr', **kwargs):
         super(InceptionV3, self).__init__(**kwargs)
 
         self.config = configuration()

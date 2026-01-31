@@ -1,15 +1,8 @@
-# -*- coding: utf-8 -*- 
-# @Time : 2021/1/31 6:36 PM 
-# @Author : wd
-# @File : modify_json.py
-
-# 修改跑出来的ACFG，去除只有一个node的图
 import glob
 import networkx as nx
 import copy
 import jsonlines
 
-exe_dir = "/Users/xiaod/Desktop/result.jsonl"
 MIN_NODE_NUMBER = 1
 
 
@@ -71,7 +64,7 @@ for file in glob.glob(dll_dir):
         data = {'hash': line['hash'], 'function_number': len(function_names),
                 'function_edges': [start_node, end_node], 'function_names': function_names,
                 'acfg_list': acfg_list}
-        write_data_to_filename("/Users/xiaod/Desktop/result_new.jsonl", data)
+        write_data_to_filename("result_new.jsonl", data)
         line = f.readline()
     f.close()
 

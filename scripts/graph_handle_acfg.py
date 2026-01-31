@@ -15,7 +15,7 @@ import omegaconf
 
 __MODIFY__ = True
 
-cfg_path = '/OpenMalAttack/configs/attack_mal.yaml'
+cfg_path = '../configs/attack_mal.yaml'
 config = omegaconf.OmegaConf.load(cfg_path)
 
 
@@ -43,7 +43,7 @@ def get_acfg():
     start_time = int(time.time())
     cfgs, flag = get_func_cfgs_c(start_time)
     if flag is True:
-        with open('/OpenMalAttack/logs/quit.log', 'a+') as f:
+        with open('../logs/quit.log', 'a+') as f:
             f.write(GetInputFile() + ' time out; start_time: ' + str(start_time) + '; end_time: ' + str(int(time.time())) + '\n')
         f.close()
         idc.Exit(0)
@@ -51,10 +51,6 @@ def get_acfg():
     for func in cfgs.raw_graph_list:
         name = func.funcname
         features = func.discovre_features
-        # fea = {'FunctionCalls': features[0], 'LogicInsts': features[1], 'TransferInsts': features[2],
-        #        'LocalVariables': features[3], 'BasicBlocks': features[4], 'EdgeNumber': features[5],
-        #        'IncommingCalls': features[6], 'Insts': features[7], 'between': features[8], 'strings': features[9],
-        #        'consts': features[10], 'Edges': features[11]}
         block_start_node = []
         block_end_node = []
         # 边集

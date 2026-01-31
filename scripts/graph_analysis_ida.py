@@ -8,7 +8,7 @@ from idc import *
 import jsonlines
 import omegaconf
 
-cfg_path = '/OpenMalAttack/configs/attack_mal.yaml'
+cfg_path = '../configs/attack_mal.yaml'
 config = omegaconf.OmegaConf.load(cfg_path)
 
 __MODIFY__ = True
@@ -43,7 +43,6 @@ def getConst(ea, offset):
 	strings = []
 	consts = []
 	optype1 = GetOpType(ea, offset)
-	# write_data_to_filename('/home/wzy/get_test_dataset_acfg/debug.log', str([offset, optype1]))
 	if optype1 == o_imm:
 		imm_value = GetOperandValue(ea, offset)
 		
@@ -81,11 +80,6 @@ def getBBconsts(bl):
 	inst_addr = start
 	while inst_addr < end:
 		opcode = GetMnem(inst_addr)
-		# 之前提不出数字是因为遇到call就break了
-		# if opcode in ['la','jalr','call', 'jal']:
-		# 	break
-			# inst_addr = NextHead(inst_addr)
-			# continue
 		strings_src, consts_src = getConst(inst_addr, 0)
 		strings_dst, consts_dst = getConst(inst_addr, 1)
 		strings += strings_src
@@ -501,7 +495,6 @@ def cal_all_attribute(bl):
 		InstsNum += 1
 		if opcode in calls:
 			CallsNum += 1
-			# 如果要提取完整特征需要把491-497行注释，如果提取call前的特征需要将491-497行解除注释
 			if config.Acfg.get_half_data:
 				instructions = GetDisasm(inst_addr)
 				next_opcode = GetMnem(NextHead(inst_addr))

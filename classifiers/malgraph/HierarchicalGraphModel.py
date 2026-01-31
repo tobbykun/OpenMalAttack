@@ -1,13 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-# ************************************
-# @Time     : 2020/12/19 18:35
-# @Author   : Xiang Ling
-# @File     : HierarchicalGraphModel.py
-# @Lab      : nesa.zju.edu.cn
-# ************************************
-
-
 import logging
 import sys
 
@@ -21,8 +11,8 @@ from torch_geometric.nn.conv import GCNConv, SAGEConv, GATConv, GINConv
 from torch_geometric.nn.glob import global_max_pool, global_mean_pool, GlobalAttention
 
 sys.path.append("..")
-from utils.malgraph.ParameterClasses import ModelParams  # noqa
-from utils.malgraph.Vocabulary import Vocab  # noqa
+from utils.malgraph.ParameterClasses import ModelParams
+from utils.malgraph.Vocabulary import Vocab
 
 
 def div_with_small_value(n, d, eps=1e-8):
@@ -45,13 +35,10 @@ def padding_tensors(tensor_list):
 
 def inverse_padding_tensors(tensors, masks):
     mask_index = torch.sum(masks, dim=-1) / masks.size(-1)
-    # print("mask_index: ", mask_index.size(), mask_index)
     
     _out_mask_select = torch.masked_select(tensors, (masks == 1)).view(-1, tensors.size(-1))
-    # print("_out_mask_select: ", _out_mask_select.size(), _out_mask_select)
     
     batch_index = torch.sum(mask_index, dim=-1)
-    # print("batch_index: ", type(batch_index), batch_index.size(), batch_index)
     
     batch_idx_list = []
     for idx, num in enumerate(batch_index):
@@ -149,7 +136,6 @@ class HierarchicalGraphNeuralNetwork(nn.Module):
         self.skip_attention_heads = model_params.skip_att_heads
         if self.skip_attention_heads >= 1:
             assert cfg_filter_list[-1] == fcg_filter_list[-1], "cfg_filter_list should be equal to fcg_filter_list"
-            # self.skip_multi_head_attention = MultiheadAttention(embed_dim=fcg_filter_list[-1], num_heads=self.skip_attention_heads)
         
         # Last Projection Function: gradually project with more linear layers
         self.pj1 = Linear(in_features=fcg_filter_list[-1], out_features=int(fcg_filter_list[-1] / 2))

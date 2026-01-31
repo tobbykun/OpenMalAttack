@@ -13,7 +13,6 @@ import torch
 import torch.utils.data
 import torch.utils.data.distributed
 
-
 from classifiers.malgraph.HierarchicalGraphModel import HierarchicalGraphNeuralNetwork
 from utils.malgraph.ParameterClasses import ModelParams
 from utils.malgraph.RealBatch import create_real_batch_data
@@ -74,74 +73,3 @@ def process_one_item(item, vocab, label=1):
     data_pt = Data(hash=item_hash, local_acfgs=acfg_list, external_list=external_function_index_list, function_edges=item_function_edges, targets=label)
     
     return data_pt
-
-
-
-def predict_one_item_prob(batch_item, vocab):
-    _model_params = ModelParams(gnn_type="GraphSAGE", pool_type="global_max_pool", acfg_init_dims=11, cfg_filters="200-200", fcg_filters="200-200", skip_att_heads=0, number_classes=2, dropout_rate=0.2, ablation_models="Full")
-    best_model_file = "models/malgraph/LocalRank_0_best_model.pt" #"/home/zju/qu/MalAttackGraph/classifier/malgraph/2021-03-28/18-02-31/LocalRank_0_best_model.pt"
-    device = torch.device('cpu')
-    
-    if _model_params.ablation_models.lower() == "full":
-        model = HierarchicalGraphNeuralNetwork(model_params=_model_params, external_vocab=vocab, global_log=None)
-    else:
-        raise NotImplementedError
-    
-    model.to(device)
-    model.load_state_dict(torch.load(best_model_file, map_location=device))
-    
-    bt = Batch.from_data_list([batch_item])
-    # print("the batch : ", bt)
-    prob = validate(local_device=device, one_batch_data=bt, model=model)
-    
-    if prob is not None:
-        prob = prob[0].item()
-    
-    return prob
-        
-        
-
-            
-
-def main():
-    start = datetime.now()
-    print("start time = {}".format(start.strftime("%Y:%m:%d_%H:%M:%S")))
-    
-    train_vocab_path = "./train_external_function_name_vocab.jsonl"
-    vocab = Vocab(freq_file=train_vocab_path, max_vocab_size=10000)
-    
-    
-    all_positive_probs = []
-    with open("/home/zju/wd/call_graph_and_acfg/qu_result.jsonl", "r+", encoding="utf-8") as file:
-        for index, item in tqdm(enumerate(jsonlines.Reader(file))):
-            bt_pt = process_one_item(item, vocab)
-            prob = predict_one_item_prob(bt_pt, vocab)
-            
-            if prob is not None:
-                print("the prob = {}".format(prob))
-                all_positive_probs.append(prob)
-            else:
-                print ("the ret is None ")
-                continue
-            
-            # if index >= 200:
-            #     break
-    
-    print ("final index is = {}".format(index))
-    print ("the None results is = {}".format(index - len(all_positive_probs)))
-    
-    fpr_threshold_1 = 0.877300
-    
-    # print(all_positive_probs)
-    final_predict = [prob >= fpr_threshold_1 for prob in all_positive_probs]
-    # print(final_predict)
-    print("sum of predicted as malwares: ", sum(final_predict))
-    print("sum of predicted as goodwares: ", len(final_predict) - sum(final_predict))
-    
-    
-    end = datetime.now()
-    print("start time = {}; consume time = {}".format(end.strftime("%Y:%m:%d_%H:%M:%S"), end - start))
-
-
-if __name__ == '__main__':
-    main()

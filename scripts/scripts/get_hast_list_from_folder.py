@@ -10,20 +10,8 @@ def write_data_to_filename(filename, data):
     with jsonlines.open(filename, mode='a') as writer:
         writer.write(data)
 
-# with open('/home/wzy/get_test_dataset_acfg/benign_hash.txt', 'r') as f:
-#     data = f.readline()
-#     dataset_hash_list = json.loads(data.strip())
-# f.close()
 
-# # result = []
-# for item in dataset_hash_list:
-#     cmd = 'find /home/benign_data -name ' + item
-#     path = os.popen(cmd).read().strip()
-#     if path!='':
-#         # print(path)
-#         write_data_to_filename('/home/wzy/get_test_dataset_acfg/benign_hash_list_path.txt',path)
-
-f = open('/home/wzy/get_test_dataset_acfg/benign_hash.txt', 'r')
+f = open('XXX/get_test_dataset_acfg/benign_hash.txt', 'r')
 line = f.readline()
 while line:
     filename = json.loads(line.strip())
@@ -31,6 +19,6 @@ while line:
     path = os.popen(cmd).read().strip()
     if path!='':
         # print(path)
-        write_data_to_filename('/home/wzy/get_test_dataset_acfg/benign_hash_list_path.txt',path)
+        write_data_to_filename('XXX/get_test_dataset_acfg/benign_hash_list_path.txt',path)
     line = f.readline()
 f.close()

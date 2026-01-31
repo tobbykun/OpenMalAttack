@@ -24,9 +24,9 @@ import eventlet
 import random
 from dataset import malware_data, malware_train, malware_test
 
-IDA_PATH = "/root/IDA_Pro_v6.4/idaq64"
-SCRIPT_PATH = "/OpenMalAttack/scripts/graph_handle_acfg.py"
-tmp_sample_root = "/OpenMalAttack/dataset/tmp"
+IDA_PATH = "XXX/idaq64"
+SCRIPT_PATH = "scripts/graph_handle_acfg.py"
+tmp_sample_root = "dataset/tmp"
 TIMEOUT = 90
 
 class PEDataset(Dataset):
@@ -120,16 +120,4 @@ def pre(malware_dataset):
         json.dump(malware_le_3000Blocks_dict, f)
 
 if __name__ == '__main__':
-    # malware_block_num_less_than_3000 = "/home/zhoubolin_tmp/Projects/Test1019_malware_le_3000Blocks.json"
-    # with open("/home/zhoubolin_tmp/__tmp__/malware_test.txt") as f:
-    #     malware_dataset = list(map(lambda x: x.strip(), f.readlines()))
-    pre(malware_train)  # 32000
-    # pre(malware_test)
-
-    # malware_dataset = malware_data
-    # import numpy as np
-    # malware_dataset = np.array_split(np.array(malware_dataset), 10)
-
-    # cpu_worker_num = 10
-    # with Pool(cpu_worker_num) as p:
-    #     outputs = p.map(pre, malware_dataset)
+    pre(malware_train)

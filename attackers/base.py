@@ -1,9 +1,8 @@
 from gym.envs.registration import register
 from utils.file_handler import get_rl_dataset
 import time
-# 1.docker环境，必要时可配置多个。
-# 2.模型直接导入。
-# 3.攻击提供接口，可以直接获取对抗样本攻击结果。
+# 模型直接导入。
+# 攻击提供接口，可以直接获取对抗样本攻击结果。
 
 class Attacker:
     """

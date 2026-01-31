@@ -1,12 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-# ************************************
-# @Time     : 2020/12/20 14:55
-# @Author   : Xiang Ling
-# @File     : FunctionHelpers.py
-# @Lab      : nesa.zju.edu.cn
-# ************************************
-
 import json
 import logging
 import os

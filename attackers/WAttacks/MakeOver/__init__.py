@@ -1,10 +1,3 @@
-"""
-MakeOver problem-space attacker (adapted for this repo).
-
-- Uses local `ThirdParty/MakeOver` implementation (no hard-coded absolute paths)
-- Operates on in-memory bytes coming from `Evaler` / attackers interface
-- Exposes `MakeOverAttacker` compatible with `attack_evals.base.Evaler`
-"""
 from __future__ import division
 
 import random
@@ -20,9 +13,6 @@ from utils.file_handler import calc_sha256
 from utils.utils4makeover import judge_grad
 
 
-# ---------------------------------------------------------------------------
-# ThirdParty MakeOver imports (relative to repo root)
-# ---------------------------------------------------------------------------
 ROOT_DIR = Path(__file__).resolve().parents[3]
 MAKEOVER_ROOT = ROOT_DIR / "ThirdParty" / "MakeOver" / "enhanced-binary-randomization"
 ORP_ROOT = MAKEOVER_ROOT / "orp"
@@ -33,16 +23,16 @@ if str(MAKEOVER_ROOT) not in sys.path:
 if str(ORP_ROOT) not in sys.path:
     sys.path.append(str(ORP_ROOT))
 
-import peLib  # type: ignore
-import func  # type: ignore
-import inp  # type: ignore
-import swap  # type: ignore
-import reorder  # type: ignore
-import equiv  # type: ignore
-import preserv  # type: ignore
-import disp  # type: ignore
-import semnops  # type: ignore
-from randtoolkit import reanalyze_functions, patch  # type: ignore
+import peLib
+import func
+import inp
+import swap
+import reorder
+import equiv
+import preserv
+import disp
+import semnops
+from randtoolkit import reanalyze_functions, patch
 
 
 def _ensure_output_dirs() -> Path:

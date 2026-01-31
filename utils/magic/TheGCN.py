@@ -1,14 +1,3 @@
-"""
-Author       : u21h2
-CreateTime   : 2021-04-27 17:44:03
-LastEditTime : 2021-04-27 18:31:06
-Email        : quzhenqing@zju.edu.cn
-Description  : 
-"""
-# -*- coding: utf-8 -*-
-# @Time : 2021/1/3 10:49 PM
-# @Author : wd
-# @File : GCN.py
 import os.path as osp
 import torch
 from torch_geometric.data import DataLoader, Dataset, InMemoryDataset, Data

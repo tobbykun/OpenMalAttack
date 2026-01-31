@@ -1,0 +1,99 @@
+# Byte-compiled / cached
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE / editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+.settings/
+
+# OS
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.temp
+*.bak
+*.orig
+
+# Project: data and outputs (do not commit samples or large artifacts)
+dataset/malware/*
+!dataset/malware/.gitkeep
+dataset/goodware/*
+!dataset/goodware/.gitkeep
+dataset/mal_train/
+dataset/mal_test/
+dataset/tmp/
+dataset/gdl/
+dataset/asm/
+dataset/processed/
+dataset/temp_acfg/
+dataset/*.json
+dataset/*.jsonl
+output/
+output/evasive/
+output/*.jsonl
+logs/
+logs/eval/
+res_*.log
+
+# Models (large binaries; optional: track via LFS or document download)
+models/*.pt
+models/*.pth
+models/**/*.pt
+models/**/*.pth
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Testing / coverage
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+

@@ -37,7 +37,7 @@ def get_acfg():
     start_time = int(time.time())
     cfgs, flag = get_func_cfgs_c(start_time)
     if flag is True:
-        with open('/OpenMalAttack/logs/quit.log', 'a+') as f:
+        with open('../logs/quit.log', 'a+') as f:
             f.write(GetInputFile() + ' time out; start_time: ' + str(start_time) + '; end_time: ' + str(int(time.time())) + '\n')
         f.close()
         idc.Exit(0)
@@ -45,10 +45,6 @@ def get_acfg():
     for func in cfgs.raw_graph_list:
         name = func.funcname
         features = func.discovre_features
-        # fea = {'FunctionCalls': features[0], 'LogicInsts': features[1], 'TransferInsts': features[2],
-        #        'LocalVariables': features[3], 'BasicBlocks': features[4], 'EdgeNumber': features[5],
-        #        'IncommingCalls': features[6], 'Insts': features[7], 'between': features[8], 'strings': features[9],
-        #        'consts': features[10], 'Edges': features[11]}
         block_start_node = []
         block_end_node = []
         # 边集
@@ -72,8 +68,6 @@ def get_acfg():
             9 -> numTermIs(Termination Instructions)
             10 -> numDefIs(Data Definition Instructions)
             """
-            # 在这里做了修改，将第0维改成numC0(数字个数)，第1维改成nums1(字符串个数)，删去offsprings
-            # print(each_node_features[1])
             node = [len(each_node_features[0]), len(each_node_features[1]), each_node_features[2], each_node_features[3],
                     each_node_features[4], each_node_features[5], each_node_features[6], each_node_features[7],
                     each_node_features[8], each_node_features[9], each_node_features[10]]
@@ -148,9 +142,9 @@ if __name__ == '__main__':
     idaapi.autoWait()
     # args = parse_command()
     # path = args.path
-    base_dir = "/OpenMalAttack/logs/"
+    base_dir = "../logs/"
     dst_path = os.path.join(base_dir, 'dst')
-    gdl_path = "/OpenMalAttack/dataset/gdl/"
+    gdl_path = "../dataset/gdl/"
     call_graph_and_acfg_filename = os.path.join(base_dir, 'benign.json')
     pe_filename = GetInputFile()  # 获取文件名
     start_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())

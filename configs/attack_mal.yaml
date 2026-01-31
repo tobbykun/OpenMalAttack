@@ -1,20 +1,10 @@
-Data:
-  root_data: "/home/000GitHub/MalGuise/datasets"
 Feature_Attack:
   model_name: "magic"
   base_url: "http://127.0.0.1:8080/predictions/magic"
   threshold_type: '100fpr'              # '100fpr' or '1000fpr'
-  acfg_filename: "/home/wzy/Attack/dataset/train_and_test/Malicious/test_malicious.json"
-  acfg_before_call_path: "/home/wzy/get_test_dataset_acfg/extracted_data/0529/test_and_val/test_and_val_mal_acfg_files_before_call"
-  acfg_path: "/home/wzy/get_test_dataset_acfg/extracted_data/0529/test_and_val/test_and_val_mal_acfg_files"
-  pe_change_file_path: "/home/000GitHub/MalGuise/src/patch_pe_files/pe_changes_and_acfgs/pe_change_files"
-  saved_sample_path: "/home/000GitHub/MalGuise/saved_samples"
-  patched_acfg_file_path: "/home/000GitHub/MalGuise/src/patch_pe_files/pe_changes_and_acfgs/patched_acfg_files"
-  hash_to_path: "/home/wzy/get_test_dataset_acfg/hash_list/mal_hash_to_path.txt"
-  hash_list: ["/home/wzy/get_test_dataset_acfg/hash_list/test_mal_hash.txt", "/home/wzy/get_test_dataset_acfg/hash_list/val_mal_hash.txt"]
-  IDA_PATH: "/root/IDA_Pro_v6.4/idaq64"
-  SCRIPT_PATH: "/OpenMalAttack/scripts/graph_handle_acfg.py"
-  tmp_sample_root: "/OpenMalAttack/dataset/tmp"
+  IDA_PATH: "The path to the directory containing idaq64."
+  SCRIPT_PATH: "../scripts/graph_handle_acfg.py"
+  tmp_sample_root: "../dataset/tmp"
   no_last_call: False
   seed: 23
   mcts_levels: 6
@@ -42,14 +32,9 @@ Problem_Attack:
   AV:
     model_name: "mcafee"
   clsf_list: ['kaspersky']
-  saved_sample_path: "/home/000GitHub/MalGuise/saved_samples"
   target_pattern: "AV"
   attack_strategy: 'mcts'
-  hash_to_path: "/home/wzy/get_test_dataset_acfg/hash_list/mal_hash_to_path.txt"
-  hash_list: ["/home/wzy/get_test_dataset_acfg/hash_list/test_mal_hash.txt"]
-  # "/home/wzy/get_test_dataset_acfg/hash_list/val_mal_hash.txt"
-  call_addr_file_path: "/home/000GitHub/MalGuise/src/patch_pe_files/pe_changes_and_acfgs/call_addr_files"
-  tmp_sample_root: "/OpenMalAttack/dataset/tmp"
+  tmp_sample_root: "../dataset/tmp"
   muti_sections: False
   mcts_levels: 6
   mcts_scalar: 0
@@ -62,8 +47,6 @@ Problem_Attack:
   selected_semnop_num: 3
   mcts_default_policy_search_depth: 1
   rate_of_increasement: 0.05
-  # 加节区时需要把加好的文件存硬盘里再读来，需要优化
-  tmp_path: "/home/000GitHub/MalGuise/src/patch_pe_files/pe_changes_and_acfgs/tmp2"
 Training:
   cuda: True                              # enable GPU training if cuda is available
   dist_backend: "nccl"                    # if using torch.distribution, the backend to be used
@@ -73,9 +56,6 @@ Training:
   test_batch_size: 32
   seed: 19920208
   only_test_path: 'None'
-Testing:
-  root: "/home/wzy/get_test_dataset_acfg/extracted_data/0529/test"
-  model_cfg_path: "/home/000GitHub/MalGuise/saved_models/magic/128-256-384-256/train_magic.yaml"
 Model:
   gnn_type: "GCN"                         # "GraphSAGE" / "GCN"
   pool_type: "global_max_pool"            # "global_max_pool" / "global_mean_pool"
@@ -88,11 +68,11 @@ Model:
   model_path: "None"    # 目标模型的路径
 Acfg:
   num_workers: 80
-  IDA_PATH: "/root/IDA_Pro_v6.4/idaq64"
-  SCRIPT_PATH: "/OpenMalAttack/scripts/graph_handle_acfg.py"
-  patch_script_path: "/OpenMalAttack/scripts/processing_patch_by_ida.py"
+  IDA_PATH: "The path to the directory containing idaq64."
+  SCRIPT_PATH: "../scripts/graph_handle_acfg.py"
+  patch_script_path: "../scripts/processing_patch_by_ida.py"
   # 提acfg的时候这后面几个参数一定要改
   get_half_data: False
-  hash_to_path: "/OpenMalAttack/scripts/hash_list/mal_hash_to_path.txt"
-  saved_path: "/OpenMalAttack/scripts/extracted_data/0529/val/val_mal_acfg_files_before_call"
-  hash_list: "/OpenMalAttack/scripts/hash_list/val_mal_hash.txt"
+  hash_to_path: "../scripts/hash_list/mal_hash_to_path.txt"
+  saved_path: "../scripts/extracted_data/0529/val/val_mal_acfg_files_before_call"
+  hash_list: "../scripts/hash_list/val_mal_hash.txt"

@@ -2,8 +2,8 @@ import sys, os
 import pefile
 
 def main():
-    EXE_PATH = "/OpenMalAttack/dataset/goodware/"
-    CONTENT_PATH = '/OpenMalAttack/dataset/benign_section_content/'
+    EXE_PATH = "The path to the directory containing benign PE files"
+    CONTENT_PATH = '../../../dataset/benign_section_content/'
 
     list_section_content = []
     
@@ -29,9 +29,6 @@ def main():
                         fp_out.write(content)
         except Exception as e:
             print(e)
-    #with open('data/benign_section_names.txt', 'w') as fp:
-    #    for name in list_name:
-    #        fp.write('%s\n' %name)
 
 if __name__ == '__main__':
     main()

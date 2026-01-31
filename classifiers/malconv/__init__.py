@@ -11,10 +11,8 @@ from classifiers.base import Classifier
 class configuration:
     use_gpu = True
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    model_file = "/OpenMalAttack/models/malconv/malconv_epoch99_0.07830339506414603.pt"
+    model_file = "../../malconv/malconv_epoch99_0.07830339506414603.pt"
     threshold_type = '100fpr'
-    # malconv_epoch49.pt 100fpr 0.576840
-    # malconv_epoch49.pt 1000fpr 0.996440
 
 class GateConv1d(nn.Module):
     def __init__(self, maxlen):
@@ -61,12 +59,9 @@ class MalConvClsf(Classifier):
         self.input_length = 2**21
         self.padding_char = 256
         self.model = MalConv(self.input_length)
-        # self.model.load_state_dict(torch.load(self.config.model_file))  #.state_dict()
         self.model.load_state_dict({k.replace('module.',''):v for k,v in torch.load(self.config.model_file).items()})
         self.model.to(self.config.device)
         self.model.eval()
-
-        # self.model = torch.load(self.config.model_file, map_location=self.config.device)
         
     def __call__(self, bytez) -> bool:
         """
@@ -83,10 +78,6 @@ class MalConvClsf(Classifier):
         return score
 
     def extract(self, bytez) -> list:
-        # b = np.ones( (self.input_length,), dtype=np.int32 )*self.padding_char   #uint16
-        # bytez = np.frombuffer( bytez[:self.input_length], dtype=np.uint8 )
-        # b[:len(bytez)] = bytez
-        # return b
 
         new_bytez = []
         if isinstance(bytez, bytes):
@@ -110,7 +101,6 @@ class MalConvClsf(Classifier):
 
         tensor = Variable(tensor, requires_grad=False)
         tensor = tensor.to(self.config.device)
-        # res = torch.index_select(self.model(tensor).detach().cpu(), 1, torch.tensor([1])).squeeze(dim=1)
         res = self.model(tensor).squeeze(dim=1)
         return res
     

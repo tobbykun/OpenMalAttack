@@ -1,20 +1,5 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-# ************************************
-# @Time     : 2020/12/20 10:16
-# @Author   : Xiang Ling
-# @File     : ParameterClasses.py
-# @Lab      : nesa.zju.edu.cn
-# ************************************
-
 from dataclasses import dataclass
 
-
-# def find_threshold_with_fpr_target(tpr_list, fpr_list, threshold_list):
-#     print("in find threshold with fpr target: ", type(fpr_list), type(tpr_list), type(threshold_list))
-#     for fpr, tpr, t in zip(fpr_list, tpr_list, threshold_list):
-#         if fpr <= 0.0002:
-#             print("FPR={:.4f}\tTPR={:.4f}\tThreshold={:.4f}".format(fpr, tpr, t))
 
 
 @dataclass

@@ -5,7 +5,6 @@ from pathlib import Path
 from classifiers.base import Classifier
 from attackers.base import Problem_Space
 from utils import manipulate
-# from utils import manipulate_mlsec2020 as manipulate
 from utils.file_handler import save_evaded_sample, calc_sha256
 
 
@@ -54,16 +53,12 @@ class RandomAttacker(Problem_Space):
                 if res is False:
                     sha256 = calc_sha256(modified_bytez)
                     save_evaded_sample(self.config.output_path, sha256, modified_bytez)
-                    # print(actions)
                     self._attack_finish()
                     self._succeed()
-                    # return sha256, modified_bytez, True  # 攻击成功, 检测为良性
-                    return sha256, True  # 攻击成功, 检测为良性 new!!!!!!!!!!!!!!!!!!!!!!
-            # print(actions)
+                    return sha256, True
             
         self._attack_finish()
-        # return None, None, False  # 攻击失败, 仍然检测为恶意
-        return None, False  # 攻击失败, 仍然检测为恶意 new!!!!!!!!!!!!!!!!!!!!!!
+        return None, False  # 攻击失败, 仍然检测为恶意
 
     def _pick_action(self) -> str:
         """

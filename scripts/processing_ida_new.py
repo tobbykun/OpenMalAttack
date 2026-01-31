@@ -6,7 +6,6 @@ import idaapi
 import idautils
 import os
 import json
-# import argparse
 import networkx as nx
 import jsonlines
 import time
@@ -37,7 +36,7 @@ def get_acfg():
     start_time = int(time.time())
     cfgs, flag = get_func_cfgs_c(start_time)
     if flag is True:
-        with open('/OpenMalAttack/logs/quit.log', 'a+') as f:
+        with open('../logs/quit.log', 'a+') as f:
             f.write(GetInputFile() + ' time out; start_time: ' + str(start_time) + '; end_time: ' + str(int(time.time())) + '\n')
         f.close()
         idc.Exit(0)
@@ -148,9 +147,9 @@ if __name__ == '__main__':
     idaapi.autoWait()
     # args = parse_command()
     # path = args.path
-    base_dir = "/OpenMalAttack/logs"
+    base_dir = "../logs"
     dst_path = os.path.join(base_dir, 'dst')
-    gdl_path = "/OpenMalAttack/dataset/gdl/"
+    gdl_path = "../dataset/gdl/"
     call_graph_and_acfg_filename = os.path.join(base_dir, 'test_malicious.json')
     pe_filename = GetInputFile()  # 获取文件名
     start_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())

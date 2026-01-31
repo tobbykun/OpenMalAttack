@@ -8,7 +8,7 @@ def write_data_to_filename(data, filename):
     f.close()
 hash_to_path = {}
 
-f = open('/home/wzy/get_test_dataset_acfg/hash_list_path/all_benign_hash_list_path.txt', 'r')
+f = open('XXX/get_test_dataset_acfg/hash_list_path/all_benign_hash_list_path.txt', 'r')
 line = f.readline()
 while line:
     path = json.loads(line.strip())
@@ -17,7 +17,7 @@ while line:
     line = f.readline()
 f.close()
 
-f = open('/home/wzy/get_test_dataset_acfg/hash_list_path/all_malicious_hash_list_path.txt', 'r')
+f = open('XXX/get_test_dataset_acfg/hash_list_path/all_malicious_hash_list_path.txt', 'r')
 line = f.readline()
 while line:
     path = json.loads(line.strip())
@@ -26,4 +26,4 @@ while line:
     line = f.readline()
 f.close()
 
-write_data_to_filename(hash_to_path, '/home/wzy/get_test_dataset_acfg/hash_list/all_hash_to_path.txt')
+write_data_to_filename(hash_to_path, 'XXX/get_test_dataset_acfg/hash_list/all_hash_to_path.txt')

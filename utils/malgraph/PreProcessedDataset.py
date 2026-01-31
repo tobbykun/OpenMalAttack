@@ -12,26 +12,8 @@ from datetime import datetime
 
 import torch
 from torch_geometric.data import Dataset, DataLoader
-from utils.RealBatch import create_real_batch_data # noqa
+from utils.RealBatch import create_real_batch_data
 
-
-# torch.multiprocessing.set_sharing_strategy('file_system')
-
-# option 1
-# self.train_samples = torch.load(self.train_data_path)
-# option 2
-# read_all_time = datetime.now()
-# global_log.info("the starting time to read all data samples = {}".format(read_all_time.strftime("%Y-%m-%d@%H:%M:%S")))
-# self.train_samples = []
-# l = int(len(os.listdir(self.train_data_path)))
-# for ids in tqdm(range(l)):
-#     self.train_samples.append(torch.load(os.path.join(self.train_data_path, "data_{}.pt".format(ids))))
-# read_end = datetime.now()
-# global_log.info("the ending time of reading all data samples = {}".format(read_end.strftime("%Y-%m-%d@%H:%M:%S")))
-# global_log.info("all during time = {}\n\n".format(read_end - read_all_time))
-# self.train_loaders = DataLoader(dataset=self.train_samples, batch_size=self.train_batch_size, shuffle=True)  # set number of workers ?
-# option 3
-# self.data_samples = MyOwnDataset(root=self.train_data_path)
 
 
 class MalwareDetectionDataset(Dataset):

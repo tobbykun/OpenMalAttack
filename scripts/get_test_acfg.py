@@ -6,7 +6,7 @@ import json
 from multiprocessing import Pool, Process, Value, Lock
 import omegaconf
 
-cfg_path = "/OpenMalAttack/configs/attack_mal.yaml"
+cfg_path = "../configs/attack_mal.yaml"
 config = omegaconf.OmegaConf.load(cfg_path)
 
 def get_data(filename):

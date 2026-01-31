@@ -6,9 +6,8 @@ import json
 from pathlib import Path
 from sklearn.model_selection import train_test_split
 
-# SAMPLE_PATH = "/home/mal_data/2020-05-06/Win32_EXE/"      # FIXME
 SAMPLE_PATH = {}
-DATA_SPLIT = "/home/zhoubolin_tmp/Projects/malware_le_3000Blocks.json"       # FIXME
+DATA_SPLIT = "xxx/malware_le_3000Blocks.json"       # FIXME
 
 def get_available_sha256():
     """从文件夹内获取可用的样本"""
@@ -57,8 +56,7 @@ def get_rl_dataset():
     labels = [1]*len(dataset)
 
     x_train, _, y_train, y_test = train_test_split(dataset, labels, random_state=124, test_size = 0.2)
-    # x_trian, x_valid, y_train, y_valid = train_test_split(x_train, y_train, random_state=124, test_size = 0.1)
-    test_json = json.load(open("/home/zhoubolin_tmp/Projects/Test1019_malware_le_3000Blocks.json", 'r'))
+    test_json = json.load(open("xxx/Projects/Test1019_malware_le_3000Blocks.json", 'r'))
     x_test = list(test_json['ls_than_3000_Blocks'])[:5000]
     for i,dt in enumerate(x_test):
         x_test[i] = os.path.basename(dt)

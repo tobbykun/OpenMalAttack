@@ -1,5 +1,4 @@
 # coding:utf-8
-# get Betweeness
 import networkx as nx
 import pdb
 

@@ -53,14 +53,3 @@ def p(model, device, data):
     return pred.item()
 
 
-# processGetACFG(samplePath='/home/zju/qu/magic/asm_and_acfg/sample.asm',resultPrefix='/home/zju/qu/magic/asm_and_acfg',label=0)
-
-# device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-# model = GCN(hidden_channels=64).to(device)
-# MODEL_PATH = './model/GCN.pt'
-# model.load_state_dict(torch.load(MODEL_PATH, map_location=torch.device('cpu')))
-
-# data = process_one_item('/home/zju/qu/magic/asm_and_acfg/sample.asm.acfg')
-# bt = Batch.from_data_list([data])
-# res = p(model, device, bt)
-# print(res)
