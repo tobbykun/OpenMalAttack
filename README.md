@@ -1,12 +1,12 @@
 # OpenMalAttack
 
-**Open Malware Attack–Defense Evaluation Platform** — A research-oriented platform for quantifying the security and robustness of intelligent code representation learning systems (e.g., PE malware detectors) through reproducible attack–defense experiments.
+**Windows PE Malware Attack–Detection Evaluation Platform** — A research-oriented platform for reproducible evaluation of attacks against Windows PE malware detectors and the corresponding detection performance.
 
 ---
 
 ## Overview
 
-This project implements an **attack–defense evaluation framework** for PE malware detection and code representation learning. It provides:
+This project implements an **attack–detection evaluation framework** for **Windows platform PE malware**: it reproduces **detection** (multiple detectors) and **adversarial attacks on detection** (evasion), and evaluates detector robustness. It provides:
 
 - **Automated preprocessing** for PE malware/goodware datasets
 - **Multiple detectors**: MalConv, MalGraph, Magic
@@ -43,7 +43,7 @@ Black-box experiments are run against all three detectors; white-box experiments
 
 - **Data preprocessing**: PE dataset loading, optional ACFG extraction (IDA + scripts), paths configurable via scripts and config files
 - **Detectors**: MalConv (raw bytes), MalGraph (ACFG + hierarchical graph), Magic (ACFG), InceptionV3 (image-based)
-- **Attack–defense pairing**: Combine any supported attacker with any classifier via a single evaluator interface (`Evaler` or `RLEvaler`)
+- **Attack–detection pairing**: Combine any supported attacker with any detector via a single evaluator interface (`Evaler` or `RLEvaler`)
 - **Metrics**: ASR (Attack Success Rate), mean time per sample; detector thresholds at 100 FPR / 1000 FPR
 - **Configurable paths**: Model weights, IDA path, script path, dataset directories, and JSON configs
 
@@ -146,7 +146,7 @@ Place pre-trained weights where each classifier expects them (paths are set insi
 
 ### 6. Run a demo
 
-From project root, run an attack–defense pair. Example: **Random vs MalConv**
+From project root, run an attack–detection (attacker–detector) pair. Example: **Random vs MalConv**
 
 ```bash
 python main_random_malconv.py
@@ -193,7 +193,7 @@ Config files under `configs/` (e.g. `attack_mal.yaml`) may contain absolute path
 2. Place it under `classifiers/` and load model weights from paths you define (or kwargs).
 3. In entry scripts, instantiate your classifier and pass it to `Evaler(attacker=..., clsf=...)` or `RLEvaler(...)`.
 
-### Evaluation framework (attack–defense pairs)
+### Evaluation framework (attack–detection pairs)
 
 Use the same pattern as the existing `main_*.py` scripts:
 
@@ -263,15 +263,15 @@ If you find this repository helpful for your research, please cite as follows:
 
 ```bibtex
 @misc{openmalattack,
-	title        = {OpenMalAttack: Open Malware Attack-Defense Evaluation Platform},
-	author       = {Ling, Xiang},
+	title        = {OpenMalAttack: Windows PE Malware Attack-Detection Evaluation Platform},
+	author       = {tobbykun},
 	howpublished = {\url{https://github.com/tobbykun/OpenMalAttack}}
 }
 ```
 
 ## References
 
-This platform builds upon or reproduces the following detectors and attacks. Please cite the relevant work when you use them.
+This platform builds upon or reproduces the following detectors and attacks for **Windows PE malware**. Please cite the relevant work when you use them.
 
 **Detectors**
 
